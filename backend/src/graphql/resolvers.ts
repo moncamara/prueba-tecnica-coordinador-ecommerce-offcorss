@@ -28,12 +28,16 @@ export const resolvers = {
 
       // Intentar consultar Mongoose si la conexión está activa
       if (mongoose.connection.readyState === 1) {
-        if (!targetId) {
+        try {
+          if (targetId && mongoose.Types.ObjectId.isValid(targetId)) {
+            const user = await User.findById(targetId);
+            if (user) return user;
+          }
           const firstUser = await User.findOne();
-          return firstUser || formatInMemoryUser();
+          if (firstUser) return firstUser;
+        } catch (err) {
+          console.warn('📌 Aviso al consultar me en BD:', err);
         }
-        const user = await User.findById(targetId);
-        if (user) return user;
       }
 
       // Respaldo en memoria
@@ -42,8 +46,12 @@ export const resolvers = {
 
     users: async () => {
       if (mongoose.connection.readyState === 1) {
-        const users = await User.find().sort({ createdAt: -1 });
-        if (users.length > 0) return users;
+        try {
+          const users = await User.find().sort({ createdAt: -1 });
+          if (users.length > 0) return users;
+        } catch (err) {
+          console.warn('📌 Aviso al consultar usuarios en BD:', err);
+        }
       }
       return [formatInMemoryUser()];
     }
@@ -59,8 +67,21 @@ export const resolvers = {
         if (mongoose.connection.readyState === 1) {
           try {
             foundUser = await User.findOne({ username: cleanUsername });
+
+            // Si el usuario admin no existe en BD aún, crearlo automáticamente
+            if (!foundUser && cleanUsername === 'admin') {
+              const passwordHash = await bcrypt.hash('admin123', 10);
+              foundUser = await User.create({
+                username: 'admin',
+                name: inMemoryUser.name,
+                lastName: inMemoryUser.lastName,
+                email: inMemoryUser.email,
+                userType: inMemoryUser.userType,
+                password: passwordHash
+              });
+            }
           } catch (dbErr) {
-            console.warn('📌 Aviso: Mongoose no pudo consultar la BD, usando usuario en memoria.');
+            console.warn('📌 Aviso: Mongoose no pudo consultar/crear la BD, usando usuario en memoria.');
           }
         }
 
@@ -102,8 +123,32 @@ export const resolvers = {
     // Mutación para editar y actualizar datos del usuario en la BD
     updateUser: async (_: any, { id, name, lastName, email, userType }: any) => {
       if (mongoose.connection.readyState === 1) {
-        const user = await User.findById(id);
-        if (user) {
+        try {
+          let user = null;
+
+          // Verificar si el ID es un ObjectId válido de MongoDB
+          if (id && mongoose.Types.ObjectId.isValid(id)) {
+            user = await User.findById(id);
+          }
+
+          // Si no se encontró por ID o el ID era un string demo (ej: usr_654321), buscar por username 'admin'
+          if (!user) {
+            user = await User.findOne({ username: 'admin' });
+          }
+
+          // Si aún no existe en MongoDB, crearlo de inmediato
+          if (!user) {
+            const passwordHash = await bcrypt.hash('admin123', 10);
+            user = new User({
+              username: 'admin',
+              name: name || inMemoryUser.name,
+              lastName: lastName || inMemoryUser.lastName,
+              email: email || inMemoryUser.email,
+              userType: userType || inMemoryUser.userType,
+              password: passwordHash
+            });
+          }
+
           if (name !== undefined) user.name = name;
           if (lastName !== undefined) user.lastName = lastName;
           if (email !== undefined) user.email = email;
@@ -111,6 +156,8 @@ export const resolvers = {
 
           await user.save();
           return user;
+        } catch (dbErr: any) {
+          console.warn('📌 Error actualizando en MongoDB:', dbErr.message);
         }
       }
 
