@@ -1,9 +1,23 @@
 import { User, Product } from '../types';
 
-// En entorno local de desarrollo, conecta directamente a http://127.0.0.1:4000 para evitar intermediarios de proxy en DevTools
-const BASE_BACKEND_URL = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-  ? 'http://127.0.0.1:4000'
-  : '';
+// ── URL del Backend ──
+// Producción: Apunta al backend desplegado en Render
+const RENDER_BACKEND_URL = 'https://offcorss-backend.onrender.com';
+
+const getBackendUrl = (): string => {
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname;
+    // Desarrollo local
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return 'http://127.0.0.1:4000';
+    }
+    // Producción (GitHub Pages → Render)
+    return RENDER_BACKEND_URL;
+  }
+  return '';
+};
+
+const BASE_BACKEND_URL = getBackendUrl();
 
 /**
  * Función auxiliar para realizar peticiones HTTP GraphQL.

@@ -17,8 +17,15 @@ const JWT_SECRET = process.env.JWT_SECRET || 'offcorss_super_secret_key_2026';
 async function startServer() {
   const app = express();
 
-  // Middlewares estándar
-  app.use(cors({ origin: true, credentials: true }));
+  // Middlewares estándar — CORS configurado para producción (GitHub Pages) y desarrollo local
+  app.use(cors({
+    origin: [
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
+      'https://moncamara.github.io'
+    ],
+    credentials: true
+  }));
   app.use(express.json());
 
   // Conectar a Base de Datos

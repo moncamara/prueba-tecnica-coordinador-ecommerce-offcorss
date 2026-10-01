@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // Base path para GitHub Pages (nombre del repositorio)
+  base: '/prueba-tecnica-coordinador-ecommerce-offcorss/',
   plugins: [react()],
   server: {
     port: 3000,

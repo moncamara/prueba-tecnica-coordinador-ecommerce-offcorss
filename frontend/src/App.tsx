@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { UserProfileModal } from './components/UserProfileModal';
@@ -73,9 +73,9 @@ const MainContent: React.FC = () => {
 export function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <HashRouter>
         <MainContent />
-      </BrowserRouter>
+      </HashRouter>
     </AuthProvider>
   );
 }

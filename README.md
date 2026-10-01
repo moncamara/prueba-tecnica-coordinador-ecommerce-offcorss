@@ -19,7 +19,18 @@ El proyecto conecta la lógica comercial con la arquitectura tecnológica a trav
 | **Exportación a CSV** | ✅ Cumplido | Selección de filas vía checkboxes y exportación formateada a `.csv`. |
 | **Vista de Detalle & Impresión** | ✅ Cumplido | Ficha extendida con datos comerciales y función de impresión limpia con `@media print`. |
 | **Diseño & Estilos (Tachyons CSS)** | ✅ Cumplido | Implementado con el framework **Tachyons CSS**, animaciones fluidas e identidad visual OFFCORSS. |
-| **Despliegue Recomendado** | ✅ Listo | Estructurado para desplegar Backend en **Render** y Frontend en **Vercel / Netlify / GitHub Pages**. |
+| **Despliegue en la Nube** | ✅ En Vivo | **Frontend:** GitHub Pages \| **Backend:** Render \| **Base de Datos:** MongoDB Atlas. |
+
+---
+
+## 🌐 Enlaces de Acceso en Vivo (Producción)
+
+- **Frontend (GitHub Pages):** [https://moncamara.github.io/prueba-tecnica-coordinador-ecommerce-offcorss/](https://moncamara.github.io/prueba-tecnica-coordinador-ecommerce-offcorss/)
+- **Backend (Render):** [https://offcorss-backend.onrender.com](https://offcorss-backend.onrender.com)
+- **GraphQL Endpoint:** [https://offcorss-backend.onrender.com/graphql](https://offcorss-backend.onrender.com/graphql)
+- **API Proxy VTEX:** [https://offcorss-backend.onrender.com/api/vtex/products](https://offcorss-backend.onrender.com/api/vtex/products)
+- **Base de Datos:** MongoDB Atlas (Cluster en la nube conectado en tiempo real)
+
 
 ---
 
