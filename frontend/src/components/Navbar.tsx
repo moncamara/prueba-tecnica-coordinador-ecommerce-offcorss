@@ -18,16 +18,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenProfile }) => {
 
   return (
     <header className="bg-white bb b--black-05 sticky top-0 z-4 no-print" style={{ borderBottom: '1px solid #E2E8F0' }}>
-      <div className="mw9 center ph3 ph4-ns pv2 flex items-center justify-between">
+      <div className="mw9 center ph2 ph4-ns pv2 flex items-center justify-between">
         
         {/* Identidad OFFCORSS Minimalista */}
-        <div className="flex items-center gap2 cursor-pointer" onClick={() => navigate('/dashboard')}>
-          <div className="bg-warning pv1 ph3 br2 flex items-center justify-center font-bold" style={{ backgroundColor: '#FFD100' }}>
-            <span className="fw8 f5 tracking-tight" style={{ color: '#0F172A', letterSpacing: '-0.5px' }}>
+        <div className="flex items-center gap1 gap2-ns cursor-pointer" onClick={() => navigate('/dashboard')}>
+          <div className="bg-warning pv1 ph2 ph3-ns br2 flex items-center justify-center font-bold" style={{ backgroundColor: '#FFD100' }}>
+            <span className="fw8 f6 f5-ns tracking-tight" style={{ color: '#0F172A', letterSpacing: '-0.5px' }}>
               OFFCORSS
             </span>
           </div>
-          <div className="bl b--light-gray pl3 ml2 dn sm-flex items-center gap2" style={{ borderColor: '#E2E8F0' }}>
+          <div className="bl b--light-gray pl2 pl3-ns ml1 ml2-ns dn md-flex items-center gap2" style={{ borderColor: '#E2E8F0' }}>
             <span className="fw6 f6 dark-gray flex items-center gap1">
               <PackageCheck size={16} className="gray" />
               Plataformas E-commerce
@@ -35,19 +35,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenProfile }) => {
           </div>
         </div>
 
-        {/* Acciones de Usuario con Separación Clara (gap: 16px) */}
+        {/* Acciones de Usuario Adaptadas a Móvil */}
         {user && (
-          <div className="flex items-center" style={{ gap: '16px' }}>
+          <div className="flex items-center gap2 gap3-ns">
             {/* Botón de Perfil */}
             <button
               onClick={onOpenProfile}
-              className="flex items-center gap2 bg-near-white hover-bg-light-gray dark-gray border-none ph3 pv2 br-pill pointer transition-all"
+              className="flex items-center gap1 gap2-ns bg-near-white hover-bg-light-gray dark-gray border-none ph2 ph3-ns pv1 pv2-ns br-pill pointer transition-all"
               style={{ backgroundColor: '#F8FAFC', border: '1px solid #E2E8F0', outline: 'none' }}
               title="Ver y editar perfil de usuario en MongoDB"
             >
               <div
                 className="br-100 flex items-center justify-center dark-gray fw8 f7 shadow-sm"
-                style={{ backgroundColor: '#FFD100', width: '32px', height: '32px', color: '#0F172A' }}
+                style={{ backgroundColor: '#FFD100', width: '28px', height: '28px', color: '#0F172A' }}
               >
                 {user.name.charAt(0)}{user.lastName.charAt(0)}
               </div>
@@ -58,16 +58,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenProfile }) => {
               <UserIcon size={14} className="gray ml1" />
             </button>
 
-            {/* Botón de Logout con margen claro */}
+            {/* Botón de Logout */}
             <button
               onClick={handleLogout}
-              className="flex items-center gap2 ph3 pv2 br3 fw6 f6 pointer transition-all"
+              className="flex items-center justify-center gap1 ph2 ph3-ns pv1 pv2-ns br3 fw6 f6 pointer transition-all"
               style={{
                 border: '1px solid #FEE2E2',
                 backgroundColor: '#FEF2F2',
                 color: '#DC2626',
                 cursor: 'pointer',
-                outline: 'none'
+                outline: 'none',
+                height: '34px'
               }}
               title="Cerrar sesión"
             >

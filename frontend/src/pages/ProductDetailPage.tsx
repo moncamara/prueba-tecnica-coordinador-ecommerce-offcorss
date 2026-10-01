@@ -58,7 +58,7 @@ export const ProductDetailPage: React.FC = () => {
     );
   }
 
-  // Filtrar y limitar las imágenes principales a un máximo de 5 miniaturas para evitar sobrecargar la interfaz
+  // Filtrar y limitar las imágenes principales a un máximo de 5 miniaturas
   const allImages = product.items.flatMap(item => item.images.map(img => img.imageUrl)).filter(Boolean);
   const uniqueImages = Array.from(new Set(allImages)).slice(0, 5);
   const activeImage = uniqueImages[selectedImageIndex] || uniqueImages[0] || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80';
@@ -75,33 +75,32 @@ export const ProductDetailPage: React.FC = () => {
   const cleanCategories = rawCategories.replace(/^ › /, '').replace(/ › $/, '');
 
   return (
-    <div className="mw8 center ph3 ph4-ns pv4">
+    <div className="mw8 center ph2 ph4-ns pv3 pv4-ns">
       
-      {/* Miga de Pan & Botón Volver */}
-      <div className="flex flex-column flex-row-ns items-start items-center-ns justify-between gap2 mb4 no-print">
+      {/* Miga de Pan & Botón Volver Responsivos */}
+      <div className="flex flex-column flex-row-ns items-start items-center-ns justify-between gap2 mb3 mb4-ns no-print">
         <div className="f7 gray flex items-center gap1 flex-wrap">
           <span className="pointer hover-dark-gray" onClick={() => navigate('/dashboard')}>Inicio</span>
           <ChevronRight size={12} />
           <span className="pointer hover-dark-gray" onClick={() => navigate('/dashboard')}>{cleanCategories}</span>
           <ChevronRight size={12} />
-          <span className="fw6 dark-gray">{product.productTitle}</span>
+          <span className="fw6 dark-gray truncate max-w-xs">{product.productTitle}</span>
         </div>
 
         <button
           onClick={() => navigate('/dashboard')}
-          className="btn-offcorss-secondary f7"
+          className="btn-offcorss-secondary f7 self-stretch self-auto-ns"
         >
           <ArrowLeft size={14} /> Volver al Catálogo
         </button>
       </div>
 
       {/* Ficha Principal de Producto (Estilo Tienda E-commerce OFFCORSS) */}
-      <div className="bg-white br4 shadow-1 pa4 pa5-ns print-card" style={{ border: '1px solid #E2E8F0' }}>
+      <div className="bg-white br3 br4-ns shadow-1 pa3 pa4-m pa5-l print-card" style={{ border: '1px solid #E2E8F0' }}>
         
-        {/* Rejilla de 2 Columnas Proporcionada */}
         <div className="pdp-grid items-start">
           
-          {/* Columna Izquierda: Galería de Imágenes */}
+          {/* Imagen & Miniaturas Galería */}
           <div>
             <div className="pdp-image-box">
               {hasDiscount && (
@@ -119,7 +118,6 @@ export const ProductDetailPage: React.FC = () => {
               />
             </div>
 
-            {/* Miniaturas de la Galería con Espaciado de 14px */}
             {uniqueImages.length > 1 && (
               <div className="thumb-gallery-container no-print">
                 {uniqueImages.map((imgUrl, idx) => (
@@ -135,52 +133,46 @@ export const ProductDetailPage: React.FC = () => {
             )}
           </div>
 
-          {/* Columna Derecha: Detalles Comerciales con Espaciado Holgado */}
-          <div className="flex flex-column gap3">
+          {/* Detalles Comerciales del Producto */}
+          <div className="flex flex-column gap2 gap3-ns">
             
-            {/* Marca & Referencia (productId) */}
             <div className="flex items-center justify-between pb1">
               <span className="bg-warning dark-gray fw8 f7 ph3 pv1 br-pill uppercase tracking-wider" style={{ backgroundColor: '#FFD100', color: '#0F172A' }}>
                 {product.brand || 'OFFCORSS'}
               </span>
               <span className="f7 gray fw6">
-                Ref / ID: <strong className="dark-gray">{product.productId}</strong>
+                Ref: <strong className="dark-gray">{product.productId}</strong>
               </span>
             </div>
 
-            {/* Título Principal */}
-            <h1 className="f2-ns f3 fw8 dark-gray tracking-tight m0 lh-title mb2">
+            <h1 className="f4 f3-ns fw8 dark-gray tracking-tight m0 lh-title">
               {product.productTitle}
             </h1>
 
-            {/* Bloque de Precio & Oferta */}
-            <div className="pv3 border-b border-t border-gray-100 flex items-baseline gap3 mb2" style={{ borderColor: '#F1F5F9' }}>
-              <span className="f2 fw8 text-dark" style={{ color: '#0F172A' }}>
+            <div className="pv2 pv3-ns border-b border-t border-gray-100 flex flex-wrap items-baseline gap2 gap3-ns" style={{ borderColor: '#F1F5F9' }}>
+              <span className="f3 f2-ns fw8 text-dark" style={{ color: '#0F172A' }}>
                 ${price.toLocaleString('es-CO')} COP
               </span>
               {hasDiscount && (
-                <span className="f5 gray strike">
+                <span className="f6 f5-ns gray strike">
                   ${listPrice.toLocaleString('es-CO')} COP
                 </span>
               )}
-              <span className="f7 bg-washed-green green ph3 pv1 br-pill fw7 flex items-center gap1 ml2" style={{ color: '#059669', backgroundColor: '#ECFDF5' }}>
-                <CheckCircle2 size={13} /> Disponible en Stock
+              <span className="f7 bg-washed-green green ph2 ph3-ns pv1 br-pill fw7 flex items-center gap1" style={{ color: '#059669', backgroundColor: '#ECFDF5' }}>
+                <CheckCircle2 size={13} /> Disponible
               </span>
             </div>
 
-            {/* Selector de Tallas / Variantes con Separación Holgada (mb3) */}
+            {/* Selector de Tallas / Variantes */}
             {product.items && product.items.length > 0 && (
-              <div className="mb3">
-                <span className="f7 gray fw7 uppercase tracking-wide db mb2">
-                  Variantes / Tallas Disponibles ({product.items.length}):
-                </span>
-                <div className="flex flex-wrap" style={{ gap: '12px' }}>
+              <div>
+                <span className="f7 gray fw7 uppercase tracking-wide db mb2">Variantes / Tallas:</span>
+                <div className="flex flex-wrap gap2">
                   {product.items.map((item, idx) => (
                     <button
                       key={item.itemId}
                       onClick={() => setSelectedItemIndex(idx)}
                       className={`size-chip ${idx === selectedItemIndex ? 'active' : ''}`}
-                      title={`SKU ID: ${item.itemId}`}
                     >
                       {item.name || `SKU ${item.itemId}`}
                     </button>
@@ -189,42 +181,32 @@ export const ProductDetailPage: React.FC = () => {
               </div>
             )}
 
-            {/* Descripción del Producto */}
-            <div className="f6 gray lh-copy bg-near-white pa3 br3 mb3" style={{ backgroundColor: '#F8FAFC', border: '1px solid #E2E8F0' }}>
-              <h3 className="f7 fw7 dark-gray m0 uppercase mb2 tracking-wide">Detalles y Composición</h3>
+            {/* Descripción & Detalles Confección */}
+            <div className="f7 f6-ns gray lh-copy bg-near-white pa3 br3" style={{ backgroundColor: '#F8FAFC', border: '1px solid #E2E8F0' }}>
               <p className="m0 dark-gray">
-                {product.description || 'Prenda confeccionada en tela de alta suavidad, ideal para el confort diario de los niños. Diseño duradero y resistente a lavados continuos.'}
+                {product.description || 'Prenda confeccionada en tela de alta suavidad, ideal para el confort diario de los niños. Diseño divertido de la colección OFFCORSS.'}
               </p>
             </div>
 
-            {/* Beneficios OFFCORSS Colocados uno debajo de otro con separación entre icono y texto */}
-            <div className="flex flex-column gap2 f7 gray pv3 border-t border-gray-100 mb2" style={{ borderColor: '#F1F5F9' }}>
-              <div className="flex items-center" style={{ gap: '10px' }}>
-                <ShieldCheck size={18} style={{ color: '#059669', flexShrink: 0 }} />
+            {/* Sellos de Confianza */}
+            <div className="flex flex-column gap2 f7 gray pv2 border-t border-gray-100" style={{ borderColor: '#F1F5F9' }}>
+              <div className="flex items-center gap2">
+                <ShieldCheck size={16} style={{ color: '#059669', flexShrink: 0 }} />
                 <span>Garantía de calidad OFFCORSS</span>
               </div>
-              <div className="flex items-center" style={{ gap: '10px' }}>
-                <Truck size={18} style={{ color: '#475569', flexShrink: 0 }} />
+              <div className="flex items-center gap2">
+                <Truck size={16} style={{ color: '#475569', flexShrink: 0 }} />
                 <span>Envíos a todo el país</span>
               </div>
             </div>
 
-            {/* Botones de Acción (Imprimir Ficha & Exportar CSV) con Separación Holgada (gap: 16px) */}
-            <div className="pt3 flex flex-wrap items-center justify-end no-print border-t border-gray-100" style={{ borderColor: '#F1F5F9', gap: '16px' }}>
-              <button
-                onClick={handleExportCSV}
-                className="btn-offcorss-secondary"
-                title="Exportar producto a CSV"
-              >
-                <Download size={16} /> Exportar CSV
+            {/* Botones de Acción (Exportar e Imprimir) */}
+            <div className="pt3 flex flex-wrap items-center gap2 gap3-ns no-print border-t border-gray-100" style={{ borderColor: '#F1F5F9' }}>
+              <button onClick={handleExportCSV} className="btn-offcorss-secondary flex-1">
+                <Download size={15} /> Exportar CSV
               </button>
-
-              <button
-                onClick={handlePrint}
-                className="btn-offcorss-primary"
-                title="Imprimir ficha técnica"
-              >
-                <Printer size={16} /> Imprimir Ficha
+              <button onClick={handlePrint} className="btn-offcorss-primary flex-1">
+                <Printer size={15} /> Imprimir Ficha
               </button>
             </div>
 
