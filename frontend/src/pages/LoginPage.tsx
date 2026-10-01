@@ -31,13 +31,13 @@ export const LoginPage: React.FC = () => {
 
   return (
     <div className="min-vh-100 flex items-center justify-center ph3 py4" style={{ backgroundColor: '#F8FAFC' }}>
-      
+
       {/* Tarjeta de Login Recogida y Compacta (Máximo 400px) */}
       <div
         className="bg-white br4 shadow-2 overflow-hidden transition-all w-100"
         style={{ maxWidth: '400px', border: '1px solid #E2E8F0', padding: '32px 28px' }}
       >
-        
+
         {/* Cabecera de Marca OFFCORSS Centrada */}
         <div className="text-center pb3 border-b border-gray-100 mb3" style={{ borderColor: '#F1F5F9' }}>
           <div className="inline-flex bg-warning pv1 ph3 br3 mb2" style={{ backgroundColor: '#FFD100' }}>
@@ -57,7 +57,7 @@ export const LoginPage: React.FC = () => {
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-column gap3">
-          
+
           <div>
             <label className="db f7 fw7 gray mb1 uppercase tracking-wide">
               Usuario (Username)
@@ -115,15 +115,15 @@ export const LoginPage: React.FC = () => {
         {/* Credenciales de Prueba Compactas */}
         <div className="mt4 pt3 border-t border-gray-100 pa3 br3" style={{ backgroundColor: '#FAFAFA', border: '1px solid #F1F5F9' }}>
           <div className="flex items-center gap1 f7 fw7 dark-gray mb1">
-            <Sparkles size={13} style={{ color: '#E5BC00' }} />
+            <Sparkles size={13} style={{ color: '#E5BC00', marginRight: '8px' }} />
             Credenciales de Prueba (DB):
           </div>
           <div className="f7 gray flex flex-column gap1">
             <span className="flex items-center gap1">
-              <CheckCircle2 size={11} className="green" /> <strong>Usuario:</strong> <code>admin</code>
+              <CheckCircle2 size={11} style={{ marginRight: '8px' }} className="green" /> <strong>Usuario:</strong> <code>admin</code>
             </span>
             <span className="flex items-center gap1">
-              <CheckCircle2 size={11} className="green" /> <strong>Contraseña:</strong> <code>admin123</code>
+              <CheckCircle2 size={11} style={{ marginRight: '8px' }} className="green" /> <strong>Contraseña:</strong> <code>admin123</code>
             </span>
           </div>
         </div>
