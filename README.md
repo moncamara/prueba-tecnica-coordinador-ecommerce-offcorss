@@ -1,131 +1,89 @@
 # 🛍️ OFFCORSS - Prueba Técnica: Coordinador(a) de Plataformas E-commerce
 
-Este repositorio contiene la solución completa, desacoplada y mantenible para la prueba técnica de **Coordinador(a) de Plataformas E-commerce** en **OFFCORSS**.
+Solución integral desarrollada para la prueba técnica del rol **Coordinador(a) de Plataformas E-commerce** en **OFFCORSS**.
 
-El proyecto conecta la lógica comercial con la arquitectura tecnológica a través de una aplicación web full-stack construida con **React.js, TypeScript, Tachyons CSS, Node.js, Express, GraphQL y MongoDB**.
+La plataforma conecta la visión y necesidades comerciales con una arquitectura técnica moderna, desacoplada y escalable, completamente desplegada y operativa en la nube.
 
 ---
 
-## 🚀 Resumen de Requerimientos Cumplidos
+## 🌐 Aplicación en Vivo (Producción)
 
-| Requerimiento | Estado | Detalles de Implementación |
+Acceso directo a la plataforma desplegada:
+
+- 🚀 **Portal Web (Frontend):** [https://moncamara.github.io/prueba-tecnica-coordinador-ecommerce-offcorss/](https://moncamara.github.io/prueba-tecnica-coordinador-ecommerce-offcorss/)
+- ⚙️ **API Gateway / Backend (Render):** [https://offcorss-backend.onrender.com](https://offcorss-backend.onrender.com)
+- 📊 **Endpoint GraphQL:** [https://offcorss-backend.onrender.com/graphql](https://offcorss-backend.onrender.com/graphql)
+- 🔌 **Servicio Proxy Catálogo VTEX:** [https://offcorss-backend.onrender.com/api/vtex/products](https://offcorss-backend.onrender.com/api/vtex/products)
+- 🗄️ **Base de Datos Cloud:** MongoDB Atlas (Cluster conectado en tiempo real)
+
+---
+
+## 🔑 Credenciales de Acceso
+
+Para ingresar a la plataforma y evaluar todas las funcionalidades del Dashboard, utilice las credenciales configuradas en la base de datos:
+
+| Campo | Valor |
+| :--- | :--- |
+| **Usuario (Username)** | `admin` |
+| **Contraseña (Password)** | `admin123` |
+
+---
+
+## 🚀 Resumen de Requerimientos y Funcionalidades Desarrolladas
+
+| Requerimiento Solicitado | Estado | Implementación Técnica |
 | :--- | :---: | :--- |
-| **Autenticación (Login)** | ✅ Cumplido | Validación de usuario contra la Base de Datos vía **GraphQL Mutation (`login`)**. |
-| **Vista Detalle de Usuario** | ✅ Cumplido | Muestra `Username`, `Create Date`, `Name`, `Last Name`, `Email` y `User Type`. |
-| **Edición de Perfil** | ✅ Cumplido | Permite editar y actualizar en tiempo real los datos del usuario en la DB vía **GraphQL Mutation (`updateUser`)**. |
-| **Consumo API VTEX** | ✅ Cumplido | Servicio HTTP proxy en Node.js que consume `https://offcorss.myvtex.com/api/catalog_system/pub/products/search/`. |
-| **Listado de Productos (5 Campos)** | ✅ Cumplido | Muestra `productId`, `Brand`, `productTitle`, `ítems` (listado de SKU IDs) e `images`. |
-| **Filtro por Texto & Paginación** | ✅ Cumplido | Buscador interactivo en tiempo real y paginación configurable. |
-| **Exportación a CSV** | ✅ Cumplido | Selección de filas vía checkboxes y exportación formateada a `.csv`. |
-| **Vista de Detalle & Impresión** | ✅ Cumplido | Ficha extendida con datos comerciales y función de impresión limpia con `@media print`. |
-| **Diseño & Estilos (Tachyons CSS)** | ✅ Cumplido | Implementado con el framework **Tachyons CSS**, animaciones fluidas e identidad visual OFFCORSS. |
-| **Despliegue en la Nube** | ✅ En Vivo | **Frontend:** GitHub Pages \| **Backend:** Render \| **Base de Datos:** MongoDB Atlas. |
+| **Autenticación (Login)** | ✅ Cumplido | Validación segura de credenciales contra **MongoDB** mediante **GraphQL Mutation (`login`)** con tokens **JWT** y hashing criptográfico **bcryptjs**. |
+| **Vista Detalle de Usuario** | ✅ Cumplido | Modal interactivo que consume **GraphQL Query (`me`)** mostrando `Username`, `Create Date`, `Name`, `Last Name`, `Email` y `User Type`. |
+| **Edición y Actualización de Perfil** | ✅ Cumplido | Edición en tiempo real directamente sobre **MongoDB** mediante **GraphQL Mutation (`updateUser`)**. |
+| **Consumo de API VTEX** | ✅ Cumplido | Servicio HTTP desacoplado en Node.js que consume la API pública oficial de catálogo de OFFCORSS (`https://offcorss.myvtex.com/api/catalog_system/pub/products/search/`). |
+| **Listado de Productos (5+ campos)** | ✅ Cumplido | Visualización de `productId`, `Brand`, `productTitle`, listado de SKUs (`itemId`) e imágenes asociadas, además de precios, descuentos y estados de inventario. |
+| **Filtro por Texto & Paginación** | ✅ Cumplido | Búsqueda predictiva multi-campo en tiempo real (por título, marca o referencia) y paginación fluida. |
+| **Exportación a CSV** | ✅ Cumplido | Selección individual y masiva mediante checkboxes con descarga de archivo `.csv` formateado y codificado con BOM UTF-8 (compatible con Excel). |
+| **Ficha de Detalle & Impresión** | ✅ Cumplido | Vista extendida de producto (PDP) con galería interactiva, selector de variantes/tallas y función de impresión optimizada para fichas técnicas (`@media print`). |
+| **Cierre de Sesión (Logout)** | ✅ Cumplido | Invalidación y limpieza segura de la sesión y tokens en cliente. |
+| **Framework CSS Tachyons** | ✅ Cumplido | Diseño ágil, responsive y fiel a la identidad visual de **OFFCORSS** implementado con **Tachyons CSS** y variables corporativas. |
+| **Despliegue Cloud en Producción** | ✅ Cumplido | **Frontend** publicado en **GitHub Pages** (vía CI/CD con GitHub Actions), **Backend** publicado en **Render** y **Base de Datos** alojada en **MongoDB Atlas**. |
 
 ---
 
-## 🌐 Enlaces de Acceso en Vivo (Producción)
+## 📐 Arquitectura Tecnológica
 
-- **Frontend (GitHub Pages):** [https://moncamara.github.io/prueba-tecnica-coordinador-ecommerce-offcorss/](https://moncamara.github.io/prueba-tecnica-coordinador-ecommerce-offcorss/)
-- **Backend (Render):** [https://offcorss-backend.onrender.com](https://offcorss-backend.onrender.com)
-- **GraphQL Endpoint:** [https://offcorss-backend.onrender.com/graphql](https://offcorss-backend.onrender.com/graphql)
-- **API Proxy VTEX:** [https://offcorss-backend.onrender.com/api/vtex/products](https://offcorss-backend.onrender.com/api/vtex/products)
-- **Base de Datos:** MongoDB Atlas (Cluster en la nube conectado en tiempo real)
-
-
----
-
-## 📐 Arquitectura de la Solución
+La solución implementa el patrón **BFF (Backend-For-Frontend)** para garantizar un alto rendimiento, seguridad de datos y evitar bloqueos por políticas de origen cruzado (CORS) con la API externa de VTEX.
 
 ```text
-PruebaTecnica/
-├── backend/                  # Servidor Node.js + Express + GraphQL + MongoDB / Mock Proxy
-│   ├── src/
-│   │   ├── config/           # Conexión a MongoDB (db.ts)
-│   │   ├── graphql/          # Schema TypeDefs y Resolvers (schema.ts, resolvers.ts)
-│   │   ├── models/           # Modelo de Mongoose para Usuarios (User.ts)
-│   │   ├── services/         # Cliente HTTP para API pública de VTEX (vtexService.ts)
-│   │   ├── seed.ts           # Script para sembrar usuario inicial en la DB
-│   │   └── server.ts         # Punto de entrada Express + Apollo GraphQL
-│   ├── package.json
-│   └── tsconfig.json
-│
-└── frontend/                 # Aplicación SPA React + TypeScript + Tachyons CSS
-    ├── src/
-    │   ├── components/       # Navbar, UserProfileModal
-    │   ├── context/          # AuthContext (Estado global de sesión)
-    │   ├── pages/            # LoginPage, DashboardPage, ProductDetailPage
-    │   ├── services/         # Clientes de API (GraphQL y REST VTEX)
-    │   ├── types/            # Interfaces TypeScript
-    │   ├── utils/            # Exportador CSV
-    │   ├── App.tsx           # Enrutamiento protegido
-    │   └── index.css         # Integración de Tachyons CSS + Reglas de Impresión
-    ├── package.json
-    └── vite.config.ts
+┌────────────────────────────────────────────────────────┐
+│                   CLIENTE / FRONTEND                   │
+│   React 18 + TypeScript + Vite + Tachyons CSS (SPA)   │
+│              Hosted on: GitHub Pages                   │
+└──────────────────────────┬─────────────────────────────┘
+                           │
+             ┌─────────────┴─────────────┐
+             │ HTTPS / Bearer JWT        │
+             ▼                           ▼
+┌──────────────────────────┐   ┌──────────────────────────┐
+│     GraphQL Endpoint     │   │     REST Proxy VTEX      │
+│   (Usuarios & Sesión)    │   │  (Catálogo de Productos) │
+│       /graphql           │   │   /api/vtex/products     │
+└────────────┬─────────────┘   └─────────────┬────────────┘
+             │                               │
+             ▼                               ▼
+┌──────────────────────────┐   ┌──────────────────────────┐
+│      MongoDB Atlas       │   │  VTEX Intelligent Search │
+│  Base de Datos en la Nube│   │    Catálogo OFFCORSS     │
+└──────────────────────────┘   └──────────────────────────┘
 ```
 
----
+### Stack de Tecnologías
 
-## 🛠️ Instrucciones de Ejecución Local
-
-### 1. Iniciar el Backend (Node.js + GraphQL)
-
-1. Ingresa a la carpeta `backend`:
-   ```bash
-   cd backend
-   ```
-2. Instala las dependencias:
-   ```bash
-   npm install
-   ```
-3. *(Opcional)* Si tienes MongoDB ejecutándose localmente o en MongoDB Atlas, asegúrate de configurar tu archivo `.env`. Si no tienes MongoDB activo, **el servidor iniciará automáticamente en modo demo con datos en memoria** sin fallar.
-4. Inicia el servidor en modo desarrollo:
-   ```bash
-   npm run dev
-   ```
-   *El backend estará escuchando en `http://localhost:4000` (GraphQL Playground en `/graphql`).*
+- **Frontend:** React 18, TypeScript, Vite, React Router (HashRouter para SPA estático), Tachyons CSS, Lucide Icons.
+- **Backend:** Node.js, Express, Apollo Server v4 (GraphQL), Mongoose ODM, Axios, JWT, Bcrypt.js.
+- **Infraestructura Cloud:** GitHub Pages (Frontend Hosting & CI/CD Pipeline), Render (Web Service), MongoDB Atlas (Cloud Database).
 
 ---
 
-### 2. Iniciar el Frontend (React + TypeScript)
+## 👤 Autor
 
-1. En una nueva terminal, ingresa a la carpeta `frontend`:
-   ```bash
-   cd frontend
-   ```
-2. Instala las dependencias:
-   ```bash
-   npm install
-   ```
-3. Inicia la aplicación React:
-   ```bash
-   npm run dev
-   ```
-4. Abre tu navegador en: `http://localhost:3000`
-
----
-
-## 🔑 Credenciales de Prueba
-
-Para ingresar al sistema utiliza las siguientes credenciales pre-configuradas:
-
-- **Usuario (Username):** `admin`
-- **Contraseña (Password):** `admin123`
-
----
-
-## 📄 Guía de Despliegue en la Nube
-
-### Backend en Render (https://render.com)
-1. Conecta el repositorio de GitHub en Render.
-2. Crea un **Web Service**.
-3. Configura:
-   - **Root Directory:** `backend`
-   - **Build Command:** `npm install && npm run build`
-   - **Start Command:** `npm start`
-   - **Environment Variables:** `PORT=4000`, `JWT_SECRET=tu_clave_secreta`.
-
-### Frontend en Vercel / Netlify / GitHub Pages
-1. Importa el proyecto seleccionando la carpeta `frontend`.
-2. Configura:
-   - **Build Command:** `npm run build`
-   - **Output Directory:** `dist`
+- **Candidata:** Mónica María Silva Brugés
+- **Cargo al que postula:** Coordinador(a) de Plataformas E-commerce — OFFCORSS
+- **Fecha:** Octubre 2026
