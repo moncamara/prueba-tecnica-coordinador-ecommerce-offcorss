@@ -1,0 +1,236 @@
+/* Importación de Tachyons CSS */
+@import 'tachyons/css/tachyons.min.css';
+
+/* Paleta de Colores Oficial de OFFCORSS */
+:root {
+  --offcorss-yellow: #FFD100;
+  --offcorss-yellow-hover: #F0C400;
+  --offcorss-dark: #0F172A;
+  --offcorss-body-text: #1E293B;
+  --offcorss-muted-text: #64748B;
+  --offcorss-bg-light: #FAFAFA;
+  --offcorss-card-bg: #FFFFFF;
+  --offcorss-border: #E2E8F0;
+  --offcorss-border-subtle: #F1F5F9;
+  --offcorss-red-badge: #E11D48;
+  --offcorss-green-stock: #059669;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--offcorss-bg-light);
+  color: var(--offcorss-body-text);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+/* Rejilla de 2 Columnas Responsiva y Aireada */
+.grid-2-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 36em) {
+  .grid-2-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tarjeta Sutil de Campo de Perfil */
+.profile-field-card {
+  background-color: #FAFAFA;
+  border: 1px solid #F1F5F9;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.profile-field-card:hover {
+  border-color: #E2E8F0;
+  background-color: #F8FAFC;
+}
+
+/* Rejilla PDP E-commerce Proporcionada */
+.pdp-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 52em) {
+  .pdp-grid {
+    grid-template-columns: 440px 1fr;
+  }
+}
+
+/* Contenedor de Imagen de Producto Proporcionado */
+.pdp-image-box {
+  width: 100%;
+  height: 440px;
+  max-height: 440px;
+  background-color: #F8FAFC;
+  border-radius: 16px;
+  border: 1px solid var(--offcorss-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.pdp-discount-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 10;
+  pointer-events: none;
+  background-color: var(--offcorss-red-badge);
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  box-shadow: 0 2px 6px rgba(225, 29, 72, 0.3);
+}
+
+.pdp-main-img {
+  max-width: 85%;
+  max-height: 85%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.pdp-main-img:hover {
+  transform: scale(1.04);
+}
+
+/* Miniaturas Galería con Espaciado Generoso (gap: 14px) */
+.thumb-gallery-container {
+  display: flex;
+  gap: 14px;
+  margin-top: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.thumb-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  border: 1.5px solid var(--offcorss-border);
+  padding: 4px;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.thumb-btn.active {
+  border-color: var(--offcorss-yellow);
+  box-shadow: 0 0 0 2px rgba(255, 209, 0, 0.4);
+}
+
+.thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Botones de Acción Estilo OFFCORSS */
+.btn-offcorss-primary {
+  background-color: var(--offcorss-yellow);
+  color: var(--offcorss-dark);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  padding: 12px 24px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(255, 209, 0, 0.2);
+}
+
+.btn-offcorss-primary:hover {
+  background-color: var(--offcorss-yellow-hover);
+  box-shadow: 0 4px 14px rgba(255, 209, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-offcorss-secondary {
+  background-color: #FFFFFF;
+  color: var(--offcorss-body-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  border: 1px solid var(--offcorss-border);
+  cursor: pointer;
+  padding: 11px 20px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-offcorss-secondary:hover {
+  background-color: #F8FAFC;
+  border-color: #CBD5E1;
+  color: var(--offcorss-dark);
+}
+
+/* Selector de Tallas / Variantes E-commerce */
+.size-chip {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1.5px solid var(--offcorss-border);
+  background-color: #FFFFFF;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--offcorss-body-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.size-chip.active {
+  border-color: var(--offcorss-dark);
+  background-color: var(--offcorss-dark);
+  color: #FFFFFF;
+}
+
+.size-chip:hover:not(.active) {
+  border-color: #94A3B8;
+  background-color: #F8FAFC;
+}
+
+/* Optimización para Impresión */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  header, footer, .no-print {
+    display: none !important;
+  }
+  .print-card {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .pdp-image-box {
+    height: 320px !important;
+  }
+}
