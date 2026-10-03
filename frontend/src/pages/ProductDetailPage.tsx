@@ -70,9 +70,9 @@ export const ProductDetailPage: React.FC = () => {
   const hasDiscount = listPrice > price;
   const discountPercent = hasDiscount ? Math.round(((listPrice - price) / listPrice) * 100) : 0;
 
-  // Formatear categorías para Breadcrumb
-  const rawCategories = product.categories ? product.categories.join(' / ').replace(/\//g, ' › ') : 'Catálogo';
-  const cleanCategories = rawCategories.replace(/^ › /, '').replace(/ › $/, '');
+  // Extraer la ruta de categorías de VTEX (ej: "/Ropa/Niños/") y limpiarla
+  const categoryPath = product.categories?.[0] || '';
+  const breadcrumbItems = categoryPath.split('/').filter(Boolean);
 
   return (
     <div className="mw8 center ph2 ph4-ns pv3 pv4-ns">
@@ -81,8 +81,21 @@ export const ProductDetailPage: React.FC = () => {
       <div className="flex flex-column flex-row-ns items-start items-center-ns justify-between gap2 mb3 mb4-ns no-print">
         <div className="f7 gray flex items-center gap1 flex-wrap">
           <span className="pointer hover-dark-gray" onClick={() => navigate('/dashboard')}>Inicio</span>
-          <ChevronRight size={12} />
-          <span className="pointer hover-dark-gray" onClick={() => navigate('/dashboard')}>{cleanCategories}</span>
+          
+          {breadcrumbItems.length > 0 ? (
+            breadcrumbItems.map((item, idx) => (
+              <React.Fragment key={idx}>
+                <ChevronRight size={12} />
+                <span className="pointer hover-dark-gray" onClick={() => navigate('/dashboard')}>{item}</span>
+              </React.Fragment>
+            ))
+          ) : (
+            <>
+              <ChevronRight size={12} />
+              <span className="pointer hover-dark-gray" onClick={() => navigate('/dashboard')}>Catálogo</span>
+            </>
+          )}
+
           <ChevronRight size={12} />
           <span className="fw6 dark-gray truncate max-w-xs">{product.productTitle}</span>
         </div>

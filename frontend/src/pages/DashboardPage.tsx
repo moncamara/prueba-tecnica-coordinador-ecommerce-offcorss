@@ -109,12 +109,12 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div className="mw9 center ph2 ph4-ns pv3 pv4-ns">
-      
+
       {/* Cabecera del Dashboard Responsiva */}
       <div className="flex flex-column flex-row-ns items-start items-center-ns justify-between mb3 mb4-ns pb2 border-b border-gray-100" style={{ borderColor: '#E2E8F0', gap: '12px' }}>
         <div>
           <h1 className="f4 f3-ns fw8 dark-gray tracking-tight m0 flex items-center gap2">
-            <Layers size={20} style={{ color: '#FFD100' }} />
+            <Layers className='mr2' size={20} style={{ color: '#FFD100' }} />
             Catálogo de Productos E-commerce
           </h1>
           <p className="f7 f6-ns gray mt1 mb0">
@@ -126,7 +126,7 @@ export const DashboardPage: React.FC = () => {
         <div className="flex flex-wrap items-center w-100 w-auto-ns gap2 gap3-ns mt2 mt0-ns">
           <button
             onClick={loadProducts}
-            className="btn-offcorss-secondary flex-1 flex-none-ns"
+            className="btn-offcorss-secondary flex-1 flex-none-ns mr2"
             title="Recargar catálogo desde VTEX"
           >
             <RefreshCw size={15} className={loading ? 'spin' : ''} />
@@ -152,14 +152,14 @@ export const DashboardPage: React.FC = () => {
       >
         {/* Buscador por Texto */}
         <div className="relative w-100 w-60-ns flex items-center">
-          <Search size={18} className="absolute left-1 ml2 gray" />
+          <Search size={18} className="absolute ml3 gray" />
           <input
             type="text"
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
             placeholder="Buscar producto, marca o ID..."
-            className="w-100 pa2 pa3-ns pl5 br3 dark-gray f6 fw6"
-            style={{ border: '1.5px solid #CBD5E1', height: '44px', outline: 'none' }}
+            className="w-100 pa2 pa3-ns br3 dark-gray f6 fw6"
+            style={{ border: '1.5px solid #CBD5E1', height: '44px', outline: 'none', paddingLeft: '40px' }}
           />
         </div>
 
@@ -194,15 +194,15 @@ export const DashboardPage: React.FC = () => {
         </div>
       ) : (
         <div className="bg-white br3 shadow-1 overflow-hidden" style={{ border: '1px solid #E2E8F0' }}>
-          
+
           {/* 📱 VISTA MÓVIL: Tarjetas Adaptativas (visible en pantalla pequeña) */}
           <div className="dn-ns pa2">
             {/* Barra superior de Selección Todo en Móvil */}
-            <div className="flex items-center justify-between pa3 bg-near-white br3 mb2" style={{ border: '1px solid #E2E8F0' }}>
+            <div className="flex items-center justify-between pa3 bg-near-white br3 mb3" style={{ border: '1px solid #E2E8F0' }}>
               <button
                 type="button"
                 onClick={toggleSelectAllPage}
-                className="flex items-center gap2 bg-transparent border-none dark-gray fw7 f7 pointer pa0"
+                className="flex items-center gap2 bg-transparent bn outline-0 dark-gray fw7 f7 pointer pa0"
               >
                 {paginatedProducts.length > 0 && paginatedProducts.every(p => selectedRows.has(p.productId)) ? (
                   <CheckSquare size={18} className="text-warning" style={{ color: '#FFD100' }} />
@@ -219,7 +219,7 @@ export const DashboardPage: React.FC = () => {
                 No se encontraron productos que coincidan con la búsqueda.
               </div>
             ) : (
-              <div className="flex flex-column gap2">
+              <div className="flex flex-column gap3">
                 {paginatedProducts.map(product => {
                   const isSelected = selectedRows.has(product.productId);
                   const mainImage = product.items[0]?.images[0]?.imageUrl || 'https://via.placeholder.com/80';

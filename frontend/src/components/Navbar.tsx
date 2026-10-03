@@ -19,7 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenProfile }) => {
   return (
     <header className="bg-white bb b--black-05 sticky top-0 z-4 no-print" style={{ borderBottom: '1px solid #E2E8F0' }}>
       <div className="mw9 center ph2 ph4-ns pv2 flex items-center justify-between">
-        
+
         {/* Identidad OFFCORSS Minimalista */}
         <div className="flex items-center gap1 gap2-ns cursor-pointer" onClick={() => navigate('/dashboard')}>
           <div className="bg-warning pv1 ph2 ph3-ns br2 flex items-center justify-center font-bold" style={{ backgroundColor: '#FFD100' }}>
@@ -41,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenProfile }) => {
             {/* Botón de Perfil */}
             <button
               onClick={onOpenProfile}
-              className="flex items-center gap1 gap2-ns bg-near-white hover-bg-light-gray dark-gray border-none ph2 ph3-ns pv1 pv2-ns br-pill pointer transition-all"
+              className="flex items-center mr2 gap1 gap2-ns bg-near-white hover-bg-light-gray dark-gray border-none ph2 ph3-ns pv1 pv2-ns br-pill pointer transition-all"
               style={{ backgroundColor: '#F8FAFC', border: '1px solid #E2E8F0', outline: 'none' }}
               title="Ver y editar perfil de usuario en MongoDB"
             >

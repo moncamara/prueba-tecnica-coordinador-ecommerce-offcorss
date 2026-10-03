@@ -280,10 +280,16 @@ body {
 /* Tarjeta Móvil para Lista de Productos */
 .mobile-product-card {
   background-color: #FFFFFF;
-  border-radius: 12px;
-  border: 1px solid var(--offcorss-border);
-  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid #F1F5F9;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  padding: 16px;
   transition: all 0.2s ease;
+}
+
+.mobile-product-card:hover {
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  border-color: #E2E8F0;
 }
 
 .mobile-product-card.selected {
